@@ -4,6 +4,36 @@ Monorepo for a full-stack **environmental impact dashboard** focused on AI workl
 
 ---
 
+## What it does
+
+This project helps you **explore and compare the environmental footprint of AI inference**—not just which model is “faster,” but roughly **how much electricity**, **grid-dependent CO₂**, and **water** different workloads and models imply when paired with **real or seeded grid data** and **facility assumptions** (PUE, WUE, data-center metadata).
+
+You get a **single place** to see high-level metrics, drill into **energy over time**, **carbon by region**, **water and sustainability context**, **side‑by‑side model comparison**, and a **map** of facilities versus grid and stress proxies.
+
+## Why it’s useful
+
+- **Awareness** — Makes abstract “AI is compute-heavy” concrete with **numbers you can compare** (energy per query, regional grid carbon, orders-of-magnitude water).
+- **Choice** — Supports **comparing models and regions** so teams can think about **where and when** they run workloads, not only which endpoint they call.
+- **Transparency** — Surfaces **methodology notes** and ties numbers to **catalog baselines**, **grid readings**, and **public sustainability-style report data** (where configured)—so trade-offs are easier to discuss with engineering and non-engineering stakeholders.
+- **Learning & demos** — Works as a **portfolio or teaching** codebase: modern **Next.js + FastAPI + TimescaleDB** stack, optional **Electricity Maps** / **WattTime** hooks, and **seed data** so charts aren’t empty on first run.
+
+*Estimates are illustrative and depend on data quality and assumptions; use them for insight and relative comparison, not compliance-grade carbon accounting without review.*
+
+## Features
+
+| Area | What you get |
+|------|----------------|
+| **Dashboard (home)** | Roll-up **metrics** (energy, average grid carbon, water, query volume), **sparklines**, **energy by provider** over a selectable window, **carbon by region** bars, **model efficiency** table. |
+| **Energy** | Provider **timelines**, **training vs inference** split (heuristic), **GPU TDP** reference bars, **energy per query** from the model catalog. |
+| **Carbon** | **World-style map** of regional intensity, **historical lines** by region, **best UTC hours** (lowest average intensity in the window), **scope-style emissions** charts from **sustainability report** data. |
+| **Water** | **Reported water** bars by provider, **usage calculator** (queries × model × region), **stress vs data-center sites** map. |
+| **Compare models** | Multi-select catalog models, **radar** profile, **switch savings** estimate (kWh, water, CO₂) from the impact API, **detailed metrics** table. |
+| **Map** | **Leaflet + OpenStreetMap**: data centers, optional **carbon** / **water stress** overlays. |
+| **Backend** | **Impact API** (estimate & compare), **dashboard aggregates**, **carbon** routes, **catalog** (datacenters, sustainability reports, GPU benchmarks), **Alembic** migrations, **seed script** and optional **Electricity Maps** ingestion script. |
+| **Resilience** | **Offline-style fallbacks** in the web app when the API errors so the UI still shows **meaningful chart data** for demos. |
+
+---
+
 ## Architecture
 
 ### System overview
@@ -89,7 +119,7 @@ sequenceDiagram
 ### 1. Install dependencies
 
 ```bash
-git clone <your-fork-url> eco-impact-dashboard
+git clone https://github.com/deeptiagrawal19/eco_impact.git eco-impact-dashboard
 cd eco-impact-dashboard
 pnpm install
 ```
