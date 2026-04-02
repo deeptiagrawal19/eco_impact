@@ -1,36 +1,36 @@
 # Eco Impact Dashboard
 
-Monorepo for a full-stack **environmental impact dashboard** focused on AI workloads: **energy**, **grid CO₂**, **water**, and **model comparisons**. The UI is **Next.js 15**; the API is **FastAPI** with **PostgreSQL / TimescaleDB** and **Redis**.
+One codebase (a **monorepo**) for a web app that tracks how **AI workloads** affect **energy use**, **CO₂ from the power grid**, **water use**, and lets you **compare models**. The front end is **Next.js 15**. The back end is **FastAPI** with **PostgreSQL (TimescaleDB)** and **Redis**.
 
 ---
 
 ## What it does
 
-This project helps you **explore and compare the environmental footprint of AI inference**—not just which model is “faster,” but roughly **how much electricity**, **grid-dependent CO₂**, and **water** different workloads and models imply when paired with **real or seeded grid data** and **facility assumptions** (PUE, WUE, data-center metadata).
+The app shows how much **electricity**, **CO₂** (based on the grid mix), and **water** are involved when you run AI **inference**, not only which model answers faster. Numbers use **grid data** (live or sample), plus simple **building efficiency** settings where we have them (things like **PUE** and **WUE** for data centers).
 
-You get a **single place** to see high-level metrics, drill into **energy over time**, **carbon by region**, **water and sustainability context**, **side‑by‑side model comparison**, and a **map** of facilities versus grid and stress proxies.
+In one interface you can see **summary numbers**, **energy trends**, **carbon by region**, **water and sustainability views**, **model comparison**, and a **map** of sites with **grid carbon** and a simple **water stress** view.
 
-## Why it’s useful
+## Why it is useful
 
-- **Awareness** — Makes abstract “AI is compute-heavy” concrete with **numbers you can compare** (energy per query, regional grid carbon, orders-of-magnitude water).
-- **Choice** — Supports **comparing models and regions** so teams can think about **where and when** they run workloads, not only which endpoint they call.
-- **Transparency** — Surfaces **methodology notes** and ties numbers to **catalog baselines**, **grid readings**, and **public sustainability-style report data** (where configured)—so trade-offs are easier to discuss with engineering and non-engineering stakeholders.
-- **Learning & demos** — Works as a **portfolio or teaching** codebase: modern **Next.js + FastAPI + TimescaleDB** stack, optional **Electricity Maps** / **WattTime** hooks, and **seed data** so charts aren’t empty on first run.
+- **Awareness.** Turns vague ideas like “AI uses a lot of power” into **figures** you can line up side by side: power per request, carbon for a given region, rough water impact.
+- **Choice.** Compare **models** and **regions** so you can ask where and when jobs run, not only which API you call.
+- **Transparency.** Explains **how numbers are built** and links them to **model catalog values**, **grid readings**, and **public style sustainability data** when you turn those sources on, so both technical and non technical people can talk about tradeoffs.
+- **Learning.** Good for a **portfolio** or **course project**: current **Next.js**, **FastAPI**, and **TimescaleDB**, optional **Electricity Maps** and **WattTime**, and **seed data** so graphs work on day one.
 
-*Estimates are illustrative and depend on data quality and assumptions; use them for insight and relative comparison, not compliance-grade carbon accounting without review.*
+These numbers are **guides for comparison**, not official carbon reports. They depend on your data and settings. Use an expert process if you need audit or compliance level reporting.
 
 ## Features
 
 | Area | What you get |
 |------|----------------|
-| **Dashboard (home)** | Roll-up **metrics** (energy, average grid carbon, water, query volume), **sparklines**, **energy by provider** over a selectable window, **carbon by region** bars, **model efficiency** table. |
-| **Energy** | Provider **timelines**, **training vs inference** split (heuristic), **GPU TDP** reference bars, **energy per query** from the model catalog. |
-| **Carbon** | **World-style map** of regional intensity, **historical lines** by region, **best UTC hours** (lowest average intensity in the window), **scope-style emissions** charts from **sustainability report** data. |
-| **Water** | **Reported water** bars by provider, **usage calculator** (queries × model × region), **stress vs data-center sites** map. |
-| **Compare models** | Multi-select catalog models, **radar** profile, **switch savings** estimate (kWh, water, CO₂) from the impact API, **detailed metrics** table. |
-| **Map** | **Leaflet + OpenStreetMap**: data centers, optional **carbon** / **water stress** overlays. |
-| **Backend** | **Impact API** (estimate & compare), **dashboard aggregates**, **carbon** routes, **catalog** (datacenters, sustainability reports, GPU benchmarks), **Alembic** migrations, **seed script** and optional **Electricity Maps** ingestion script. |
-| **Resilience** | **Offline-style fallbacks** in the web app when the API errors so the UI still shows **meaningful chart data** for demos. |
+| **Dashboard (home)** | Summary **stats** (energy, average grid carbon, water, query count), small **trend charts**, **energy by company** over time, **carbon by region** bars, **model ranking** table. |
+| **Energy** | **Charts over time** by provider, **training vs inference** rough split, **GPU power** reference bars, **energy per query** from the catalog. |
+| **Carbon** | **Map** of regional intensity, **history lines** by region, **best hours (UTC)** with lower average intensity in the range, **emissions scope** style charts from **sustainability** inputs. |
+| **Water** | **Water use** bars by provider, **calculator** (queries times model times region), **map** of sites with stress styling. |
+| **Compare models** | Pick several catalog models, **radar** chart, **savings** hint (kWh, water, CO₂) from the impact API, **detail table**. |
+| **Map** | **Leaflet** with **OpenStreetMap**: data centers, optional **carbon** and **water stress** layers. |
+| **Backend** | **Impact** endpoints (single estimate and compare), **dashboard** math, **carbon** helpers, **catalog** (data centers, sustainability reports, GPU list), **Alembic** migrations, **seed** script, optional **Electricity Maps** loader. |
+| **Resilience** | If the API fails, the web app can still show **sample chart data** so the UI does not go blank. |
 
 ---
 
@@ -164,7 +164,7 @@ pnpm dev
 ```
 
 - **Web:** http://localhost:3000  
-- **API:** http://localhost:8000 — health: http://localhost:8000/health  
+- **API:** http://localhost:8000 (health: http://localhost:8000/health)
 
 `pnpm dev` runs Turbo `dev` tasks: shared-types watch, API (Uvicorn), and Next dev.
 
@@ -191,11 +191,11 @@ chmod +x setup.sh
 
 ## API surface (high level)
 
-- **`/api/dashboard/*`** — Metrics, energy timeline, carbon by region/history, training/split heuristics, best times
-- **`/api/impact/*`** — Per-model estimates, comparison, catalog
-- **`/api/carbon/*`** — Carbon helpers / regions
-- **`/api/datacenters`**, **`/api/sustainability/reports`**, **`/api/gpu/benchmarks`** — Catalog data
-- **`/health`** — Liveness
+- **`/api/dashboard/*`:** metrics, energy timeline, carbon by region and history, training or inference split, best times
+- **`/api/impact/*`:** one model estimate, compare models, catalog
+- **`/api/carbon/*`:** carbon helpers and regions
+- **`/api/datacenters`**, **`/api/sustainability/reports`**, **`/api/gpu/benchmarks`:** catalog data
+- **`/health`:** simple health check
 
 CORS defaults target `http://localhost:3000` (`apps/api/app/core/config.py`).
 
