@@ -1,0 +1,36 @@
+{
+  "provider": "microsoft",
+  "report_url": "https://www.microsoft.com/en-us/corporate-responsibility/sustainability/report",
+  "years": {
+    "2022": {
+      "electricity_gwh": 9500,
+      "water_gallons": 4200000000,
+      "emissions_mtco2e": 14.1,
+      "pue": 1.18,
+      "renewable_pct": 48,
+      "scope1_mtco2e": 0.15,
+      "scope2_mtco2e": 2.5,
+      "scope3_mtco2e": 11.45
+    },
+    "2023": {
+      "electricity_gwh": 10200,
+      "water_gallons": 4500000000,
+      "emissions_mtco2e": 14.8,
+      "pue": 1.16,
+      "renewable_pct": 52,
+      "scope1_mtco2e": 0.14,
+      "scope2_mtco2e": 2.4,
+      "scope3_mtco2e": 12.26
+    },
+    "2024": {
+      "electricity_gwh": 11000,
+      "water_gallons": 4800000000,
+      "emissions_mtco2e": 15.2,
+      "pue": 1.15,
+      "renewable_pct": 56,
+      "scope1_mtco2e": 0.13,
+      "scope2_mtco2e": 2.3,
+      "scope3_mtco2e": 12.77
+    }
+  }
+}

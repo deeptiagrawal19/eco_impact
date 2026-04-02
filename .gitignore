@@ -1,0 +1,29 @@
+node_modules
+.DS_Store
+.env
+.env.local
+.env.*.local
+.next
+dist
+.turbo
+*.pyc
+__pycache__
+.pytest_cache
+.venv
+venv
+apps/api/.venv
+coverage
+*.egg-info
+.python-version
+
+# Logs & tooling
+*.log
+npm-debug.log*
+pnpm-debug.log*
+.yarn/cache
+
+# Editors / OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+Thumbs.db

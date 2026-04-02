@@ -1,0 +1,36 @@
+{
+  "provider": "amazon",
+  "report_url": "https://sustainability.aboutamazon.com/",
+  "years": {
+    "2022": {
+      "electricity_gwh": 72000,
+      "water_gallons": 3100000000,
+      "emissions_mtco2e": 71.3,
+      "pue": 1.2,
+      "renewable_pct": 90,
+      "scope1_mtco2e": 14.0,
+      "scope2_mtco2e": 5.2,
+      "scope3_mtco2e": 52.1
+    },
+    "2023": {
+      "electricity_gwh": 78000,
+      "water_gallons": 3250000000,
+      "emissions_mtco2e": 74.5,
+      "pue": 1.19,
+      "renewable_pct": 92,
+      "scope1_mtco2e": 13.5,
+      "scope2_mtco2e": 5.0,
+      "scope3_mtco2e": 56.0
+    },
+    "2024": {
+      "electricity_gwh": 83000,
+      "water_gallons": 3380000000,
+      "emissions_mtco2e": 77.2,
+      "pue": 1.18,
+      "renewable_pct": 94,
+      "scope1_mtco2e": 13.0,
+      "scope2_mtco2e": 4.9,
+      "scope3_mtco2e": 59.3
+    }
+  }
+}

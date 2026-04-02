@@ -1,0 +1,36 @@
+{
+  "provider": "meta",
+  "report_url": "https://sustainability.fb.com/",
+  "years": {
+    "2022": {
+      "electricity_gwh": 3400,
+      "water_gallons": 1100000000,
+      "emissions_mtco2e": 5.5,
+      "pue": 1.15,
+      "renewable_pct": 70,
+      "scope1_mtco2e": 0.05,
+      "scope2_mtco2e": 1.1,
+      "scope3_mtco2e": 4.35
+    },
+    "2023": {
+      "electricity_gwh": 4100,
+      "water_gallons": 1250000000,
+      "emissions_mtco2e": 5.95,
+      "pue": 1.13,
+      "renewable_pct": 72,
+      "scope1_mtco2e": 0.05,
+      "scope2_mtco2e": 1.05,
+      "scope3_mtco2e": 4.85
+    },
+    "2024": {
+      "electricity_gwh": 4800,
+      "water_gallons": 1380000000,
+      "emissions_mtco2e": 6.35,
+      "pue": 1.12,
+      "renewable_pct": 75,
+      "scope1_mtco2e": 0.05,
+      "scope2_mtco2e": 1.0,
+      "scope3_mtco2e": 5.3
+    }
+  }
+}

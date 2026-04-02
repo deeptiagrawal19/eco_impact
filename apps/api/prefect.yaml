@@ -1,0 +1,46 @@
+# Prefect deployment definitions for eco-impact-api pipelines.
+# From ``apps/api``:
+#   prefect work-pool create default-process-pool --type process
+#   prefect deploy --prefect-file prefect.yaml --all
+#
+# Or deploy one: prefect deploy --prefect-file prefect.yaml -n carbon-intensity-15m
+
+name: eco-impact-api
+prefect-version: "3.1.0"
+
+build: null
+push: null
+pull: null
+
+deployments:
+  - name: carbon-intensity-15m
+    entrypoint: pipelines/flows/carbon_intensity.py:fetch_carbon_intensity_all_regions
+    work_pool:
+      name: default-process-pool
+    schedule:
+      cron: "*/15 * * * *"
+      timezone: UTC
+
+  - name: sustainability-reports-weekly
+    entrypoint: pipelines/flows/sustainability_reports.py:sustainability_reports_pipeline
+    work_pool:
+      name: default-process-pool
+    schedule:
+      cron: "0 2 * * 1"
+      timezone: UTC
+
+  - name: gpu-benchmarks-monthly
+    entrypoint: pipelines/flows/gpu_benchmarks.py:gpu_benchmarks_pipeline
+    work_pool:
+      name: default-process-pool
+    schedule:
+      cron: "0 3 1 * *"
+      timezone: UTC
+
+  - name: model-updates-daily
+    entrypoint: pipelines/flows/model_updates.py:model_updates_pipeline
+    work_pool:
+      name: default-process-pool
+    schedule:
+      cron: "0 4 * * *"
+      timezone: UTC

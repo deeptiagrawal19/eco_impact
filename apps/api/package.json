@@ -1,0 +1,13 @@
+{
+  "name": "api",
+  "private": true,
+  "scripts": {
+    "dev": "python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+    "build": "node -e \"console.log('api: no build artifact'); process.exit(0)\"",
+    "lint": "node -e \"console.log('api: use ruff from Python venv'); process.exit(0)\"",
+    "db:upgrade": "alembic upgrade head",
+    "db:downgrade": "alembic downgrade -1",
+    "db:seed": "PYTHONPATH=. python seed.py",
+    "flow:carbon": "PYTHONPATH=. python pipelines/flows/carbon_intensity.py"
+  }
+}
