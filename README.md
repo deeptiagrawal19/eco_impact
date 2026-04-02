@@ -212,14 +212,6 @@ CORS defaults target `http://localhost:3000` (`apps/api/app/core/config.py`).
 
 ---
 
-## Before pushing to GitHub
-
-- Confirm **no secrets** in the repo (only `.env.example` with empty or dummy values).
-- Add a **LICENSE** if the project is public.
-- Run `pnpm build` and smoke-test `pnpm dev` locally.
-
----
-
 ## Contributing
 
 Issues and PRs are welcome. Keep API and web changes aligned with shared types in `packages/shared-types` when you touch request/response shapes.
